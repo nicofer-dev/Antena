@@ -1,0 +1,90 @@
+/* Sidebar */
+.sidebar {
+    width: 220px;
+    position: fixed;
+    height: 100%;
+    background-color: #003366; /* Azul institucional */
+    padding: 20px;
+    color: #fff;
+    font-family: 'Roboto', sans-serif;
+    top: 0;
+    left: 0;
+}
+
+/* Enlaces del sidebar */
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #ffffff;
+    text-decoration: none;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar a:hover {
+    background-color: #0055a5; /* Azul más claro al pasar el mouse */
+    
+}
+
+/* Contenido principal */
+.main {
+    margin-left: 240px;
+    padding: 30px;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+/* Títulos */
+.main h1, .main h2 {
+    color: #003366;
+}
+
+/* Botones */
+.button {
+    background-color: #0055a5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #0077cc;
+}
+
+/* Encabezado */
+.header {
+    background-color: #ffffff; /* Azul institucional */
+    padding: 15px;
+    text-align: left;
+    margin-left: 240px; /* deja espacio para el sidebar */
+}
+
+/* Logo */
+.logo {
+    max-height: 60px;
+    
+}
+
+/* 🎨 Estilos para la página de análisis */
+.graficas-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px; /* separación entre gráficas */
+    margin-top: 30px;
+}
+
+.grafica-card {
+    flex: 1 1 45%; /* cada gráfica ocupa 45% en pantallas grandes */
+    min-width: 300px; /* ancho mínimo para móviles */
+    max-width: 600px; /* ancho máximo para no estirarse demasiado */
+    padding: 20px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+}

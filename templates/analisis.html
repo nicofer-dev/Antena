@@ -1,0 +1,86 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container">
+    <h1 class="text-center">📊 Análisis de Convocatorias</h1>
+    <p class="text-muted text-center">Datos obtenidos automáticamente de MinCiencias</p>
+
+    <div class="graficas-container">
+        <div class="grafica-card">
+            <canvas id="graficaExistentes"></canvas>
+        </div>
+        <div class="grafica-card">
+            <canvas id="graficaNuevas"></canvas>
+        </div>
+    </div>
+</div>
+
+<!-- Cargar Chart.js -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+async function cargarDatos() {
+    try {
+        const respuesta = await fetch("/api/analisis");
+        const data = await respuesta.json();
+
+        const paginas = data.paginas;
+        const existentes = data.existentes;
+        const nuevas = data.nuevas;
+
+        // 📊 Gráfica de convocatorias existentes
+        new Chart(document.getElementById("graficaExistentes"), {
+            type: "bar",
+            data: {
+                labels: paginas,
+                datasets: [{
+                    label: "Convocatorias existentes",
+                    data: existentes,
+                    backgroundColor: "rgba(54, 162, 235, 0.7)",
+                    borderColor: "rgba(54, 162, 235, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // 📊 Gráfica de convocatorias nuevas
+        new Chart(document.getElementById("graficaNuevas"), {
+            type: "bar",
+            data: {
+                labels: paginas,
+                datasets: [{
+                    label: "Convocatorias nuevas",
+                    data: nuevas,
+                    backgroundColor: "rgba(255, 99, 132, 0.7)",
+                    borderColor: "rgba(255, 99, 132, 1)",
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+    } catch (error) {
+        console.error("Error cargando los datos:", error);
+    }
+}
+
+cargarDatos();
+</script>
+{% endblock %}
+
+
+
+
+
+
+

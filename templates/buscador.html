@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="text-center">📊 Convocatorias Minciencias</h1>
+
+    <div class="text-center my-3">
+        <button id="btnActualizar" class="btn btn-primary">
+            🔄 Actualizar Convocatorias
+        </button>
+        <a href="/descargar_convocatorias" class="btn btn-success ms-2">
+            ⬇ Descargar Excel
+        </a>
+    </div>
+
+    <p id="resultado" class="text-center text-muted"></p>
+</div>
+
+<script>
+document.getElementById("btnActualizar").addEventListener("click", function() {
+    document.getElementById("resultado").innerText = "⏳ Actualizando convocatorias...";
+
+    fetch("/actualizar_convocatorias")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error HTTP: " + response.status);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === "ok") {
+                document.getElementById("resultado").innerText =
+                    data.mensaje + " | Total en archivo: " + data.total;
+            } else {
+                document.getElementById("resultado").innerText =
+                    "⚠ " + data.mensaje;
+            }
+        })
+        .catch(err => {
+            document.getElementById("resultado").innerText = "❌ Error: " + err;
+        });
+});
+</script>
+
+{% endblock %}
+
+

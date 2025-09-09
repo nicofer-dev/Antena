@@ -1,0 +1,55 @@
+{% extends "layout.html" %}
+{% block content %}
+<h1>🔔 Alertas de Convocatorias Nuevas</h1>
+
+<button id="btnActualizar">🔄 Verificar Nuevas Convocatorias</button>
+<p id="resultado"></p>
+
+<h3>📌 Nuevas Convocatorias:</h3>
+<ul id="listaNuevas"></ul>
+
+<script>
+document.getElementById("btnActualizar").addEventListener("click", function() {
+    document.getElementById("resultado").innerText = "⏳ Buscando convocatorias nuevas...";
+    document.getElementById("listaNuevas").innerHTML = "";
+
+    fetch("/actualizar_convocatorias")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "ok") {
+                document.getElementById("resultado").innerText =
+                    data.mensaje + " | Total en archivo: " + data.total;
+
+                if (data.nuevas && data.nuevas.length > 0) {
+                    data.nuevas.forEach(conv => {
+                        let li = document.createElement("li");
+
+                        let numero = conv["Número"] ? `#${conv["Número"]} - ` : "";
+                        let titulo = conv["Título"] || "Sin título";
+                        let enlace = conv["Enlace"] || "#";
+
+                        li.innerHTML = `
+                            ${numero}${titulo}
+                            <a href="${enlace}" target="_blank">
+                                <button>Ver más</button>
+                            </a>
+                        `;
+                        document.getElementById("listaNuevas").appendChild(li);
+                    });
+                } else {
+                    document.getElementById("listaNuevas").innerHTML = "<li>No hay convocatorias nuevas</li>";
+                }
+            } else {
+                document.getElementById("resultado").innerText = "⚠ " + data.mensaje;
+            }
+        })
+        .catch(err => {
+            document.getElementById("resultado").innerText = "❌ Error: " + err;
+        });
+});
+</script>
+{% endblock %}
+
+
+
+

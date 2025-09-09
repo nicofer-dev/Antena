@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+{% block content %}
+<h2>Subir archivo Excel</h2>
+<form method="POST" enctype="multipart/form-data">
+    <input type="file" name="archivo_excel" required>
+    <button type="submit">Subir y Generar</button>
+</form>
+<p>{{ mensaje }}</p>
+{% if archivos %}
+    <ul>
+    {% for archivo in archivos %}
+        <li><a href="{{ url_for('descargar', nombre=archivo) }}">{{ archivo }}</a></li>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

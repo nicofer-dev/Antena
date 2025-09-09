@@ -1,0 +1,112 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Chat Virtual PCIS</title>
+  <style>
+    :root {
+      --color-primario: #fafafaf8;
+      --color-secundario: #FDB913;
+      --color-acento: #0076A8;
+      --color-fondo: #ffffff;
+      --color-texto: #333333;
+      --color-sombra: rgba(0,0,0,0.2);
+    }
+
+    body.dark-mode {
+      --color-fondo: #121212;
+      --color-texto: #082d7edc;
+      --color-sombra: rgba(0,0,0,0.6);
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: var(--color-fondo);
+      color: var(--color-texto);
+      transition: background 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+
+    .chat-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      
+    }
+
+    .chat-container {
+      width: 460px;
+      height: 680px;
+      background: var(--color-fondo);
+      border: 2px solid var(--color-primario);
+      border-radius: 20px;
+      box-shadow: 0 8px 25px var(--color-sombra);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.3s, border-color 0.3s;
+    }
+
+    .chat-header {
+      background: var(--color-primario);
+      color: rgba(17, 56, 116, 0.836);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .chat-header img {
+      height: 28px;
+      width: auto;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+
+    .chat-footer {
+      background: var(--color-secundario);
+      color: #000;
+      text-align: center;
+      padding: 8px;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+   
+  </style>
+</head>
+<body>
+  
+
+  <div class="chat-wrapper">
+    <div class="chat-container">
+      <div class="chat-header">
+        <img src="/static/observatorio.png" alt="Logo PCIS">
+        <span> Asistente Virtual PCIS</span>
+      </div>
+      <iframe src="https://copilotstudio.microsoft.com/environments/Default-b1ba85eb-a253-4467-9ee8-d4f8ed4df300/bots/crbc1_virtualitaPcis/webchat?__version__=2"></iframe>
+      <div class="chat-footer">Observatorio de Innovación Social - UNIMINUTO</div>
+    </div>
+  </div>
+
+ 
+</body>
+</html>
+
+
+
+
+
+{% endblock %}

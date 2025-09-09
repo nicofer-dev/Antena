@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Generador de Fichas{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menú</h2>
+        <a href="/">Inicio</a>
+        <a href="/subir">Subir Excel</a>
+        <a href="/documentos">Documentos Generados</a>
+        <a href="/buscador">Buscador</a>
+        <a href="/analisis">Análisis</a>
+        <a href="/alertas">Alertas</a>
+        <a href="/chatbot">Chatbot</a> 
+        <a href="/login">Login</a>
+    </div>
+     <header class="header">
+    <img src="{{ url_for('static', filename='logo.png') }}" alt="Logo" class="logo">
+  </header>
+
+    <div class="main">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>
