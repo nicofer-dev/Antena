@@ -1,0 +1,10 @@
+flask
+gunicornpip
+Flask
+pandas
+beautifulsoup4
+requests
+docxtpl
+lxml
+openpyxl
+gunicorn
